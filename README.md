@@ -63,7 +63,7 @@ Some basic notes on the above genesis.json:
 + _"parentHash"_        - pointer to the parent block, 0 for genesis
 + _"difficulty"_        - mining dificulty
 + _"gasLimit"_          - limit of gas cost per block, high for testing
-+ _"extraData"_         - (_to eternity and beyond_ note)[https://en.bitcoin.it/wiki/Genesis_block]
++ _"extraData"_         - _to eternity and beyond_ or [bitcoin note](https://en.bitcoin.it/wiki/Genesis_block)
 + _"alloc"_             - could pre-fund wallet accounts, it does not create the accounts
 
 Use a text editor to write the genesis.json file and then save it in the __private-blockchain__ directory. The directory tree would look something like this:
