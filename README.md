@@ -8,7 +8,7 @@ More info: [go-ethereum/wiki/Private-network](https://github.com/ethereum/go-eth
 
 Also an interesting read from 2015: [Vitalik on public and private blockchains](https://blog.ethereum.org/2015/08/07/on-public-and-private-blockchains/) 
 
-
+But let's __get started!__
 
 ## First Node - Local machine
 This is done on macOS Sierra 10.12.6, however it should work in a similar way on other OS or maybe using docker and linux.
