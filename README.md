@@ -146,20 +146,20 @@ $ geth --datadir ./chain-data console
 ```
 console is added to have cloud same console access (to the JS console) after the node is started, otherwise you will have to start another terminal connect to the droplet and then attach to the running geth.
 
-In the geth JS console run using the saved enode info from the local machine:
+In the geth JS console run admin.addPeer with the the saved enode info from the local machine:
 ```
 > admin.addPeer("enode://a3d1....bf3@EXT:IP:ADD:RESS:30303")
 ```
-and you should get a console answer: __true__ !!
+and you should see a console answer: __true__ !!
 
-and list peers should confirm the other peer node
+Listing peers should confirm the other peer node
 ```
 > admin.peers
 ```
 
 ## Transfer Ether from local account to cloud account
 
-__Cloud: in the geth JS console:__
+__Cloud Node__ in the geth JS console:
 ```
 > eth.accounts
 ```
@@ -168,41 +168,43 @@ No accounts are present, then create an account
 > personal.newAccount("passphrase")
 ```
 
-__Local node attach a geth JS console from a terminal:__
+__Local node__ attach a geth JS console from a terminal:
 ```
 $ geth attach /Users/..../private-blockchain/chain-data/geth.ipc
 ```
-Then in the JS console
+Then in the JS console make a new account and unlock it for transfer:
 ```
 > personal.newAccount("passphrase")
 > personal.unlockAccount(address, "passphrase")
 ```
-Start mining with one thread
+Start mining with one thread, this would produce ether to the account:
 ```
 > miner.start(1)
 ```
-Transfer ether bewteen accounts, must have account unlocked and miner going on for the transaction to work
+Transfer ether bewteen accounts, must have the from account unlocked and miner going on for the transaction to go through:
 ```
 > eth.sendTransaction({from: '0x126.....c3c', to: '0xd9d.....d19', value: web3.toWei(1, "ether")})
 ```
-to check balance
+To check an account balance:
 ```
 > eth.getBalance("0xd9d.....d19") 
 ```
 
 
-### Connect Mist Ethereum Wallet to the Private Net:
+## Connect Mist Ethereum Wallet to the Private Net:
 Install Mist Ethereum Wallet: [/ethereum/mist/releases](https://github.com/ethereum/mist/releases)
-##### Connect Mist to your private net blockchain and use Mist functionality
-On macOS start Mist like this from a terminal to connect to the private network, the ipc end point is the above noted when the local node was started:
+#### Connect Mist to your private net blockchain and use Mist functionality
+On macOS start Mist like this from a terminal to connect to the private network, the geth.ipc path end point is the above noted when the local node was started:
 ```
 $ /Applications/Mist.app/Contents/MacOS/Mist --rpc /Users/...../private-blockchain/chain-data/geth.ipc
 ```
-Mist starts on Private-Net, and connects to 2 peers
+__Mist__ starts on Private-Net, and connects to the 2 peers:
 
 
 ![digidroplet](/images/miststart.png)
 
-Interesting read from 2015: [Vitalik on public and private blockchains](https://blog.ethereum.org/2015/08/07/on-public-and-private-blockchains/) 
+
+
+Additional an interesting read from 2015: [Vitalik on public and private blockchains](https://blog.ethereum.org/2015/08/07/on-public-and-private-blockchains/) 
 
 
