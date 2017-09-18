@@ -4,21 +4,21 @@ This page contains description on how to start an own private network blockchain
 __One local machine__ running node and __one cloud__ based running node are connected. Similar additional nodes can be added to the private network.
 >An Ethereum network is a private network if the nodes are not connected to the main network nodes.
 
-More info: (https://github.com/ethereum/go-ethereum/wiki/Private-network)[https://github.com/ethereum/go-ethereum/wiki/Private-network]
-___
+More info: [https://github.com/ethereum/go-ethereum/wiki/Private-network](https://github.com/ethereum/go-ethereum/wiki/Private-network)
+
 ### First Node - Local machine: 
 This is done on macOS Sierra 10.12.6, however it should work in a similar way on other OS or maybe using docker and linux.
 
 __First thing first:__
-Install Go Ethereum, geth which is the CLI Ethereum client, details are here: (https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum)[https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum]
+Install Go Ethereum, __geth__ which is the CLI Ethereum client, details are here: [https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum](https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum)
 
 For Mac, you can install using Homebrew, the brew installed version could be behind the actively developed Go Ethereum, but it should work or you can also install from develop branch.
-(https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Mac)[https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Mac]
+[https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Mac](https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Mac)
 ```
 $ brew tap ethereum/ethereum
 $ brew install ethereum
 ```
-Check install using the terminal:
+Check geth is installed from the terminal:
 ```
 $ geth version
 ```
@@ -63,4 +63,4 @@ Some basic notes on the above genesis.json:
 + "alloc"             - could pre-fund wallet accounts, it does not create the accounts
 
 Use an text editor to make the file then save it in the __private-blockchain__ directory. The directory tree to look something like this:
-![directory tree](/dirtree.png)
+![directory tree](/images/dirtree.png)
