@@ -6,6 +6,8 @@ __One local machine__ node and __one cloud__ based node are used to start and ar
 
 More info: [go-ethereum/wiki/Private-network](https://github.com/ethereum/go-ethereum/wiki/Private-network)
 
+Also an interesting read from 2015: [Vitalik on public and private blockchains](https://blog.ethereum.org/2015/08/07/on-public-and-private-blockchains/) 
+
 
 
 ## First Node - Local machine
@@ -205,9 +207,5 @@ __Mist__ starts on Private-Net, and connects to the 2 peers:
 
 
 ![digidroplet](/images/miststart.png)
-
-
-
-Additional an interesting read from 2015: [Vitalik on public and private blockchains](https://blog.ethereum.org/2015/08/07/on-public-and-private-blockchains/) 
 
 
