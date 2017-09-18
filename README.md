@@ -152,7 +152,7 @@ In the geth JS console run admin.addPeer with the the saved enode info from the 
 ```
 and you should see a console answer: __true__ !!
 
-Listing peers should confirm the other peer node
+Listing peers should confirm the other peer node:
 ```
 > admin.peers
 ```
@@ -163,7 +163,7 @@ __Cloud Node__ in the geth JS console:
 ```
 > eth.accounts
 ```
-No accounts are present, then create an account
+No accounts are present, to create an account:
 ```
 > personal.newAccount("passphrase")
 ```
@@ -181,7 +181,7 @@ Start mining with one thread, this would produce ether to the account:
 ```
 > miner.start(1)
 ```
-Transfer ether bewteen accounts, must have the from account unlocked and miner going on for the transaction to go through:
+Transfer ether bewteen accounts, must have the _from_ account unlocked and miner mining for the transaction to go through:
 ```
 > eth.sendTransaction({from: '0x126.....c3c', to: '0xd9d.....d19', value: web3.toWei(1, "ether")})
 ```
@@ -189,11 +189,14 @@ To check an account balance:
 ```
 > eth.getBalance("0xd9d.....d19") 
 ```
-
+To stop mining:
+```
+> miner.stop()
+```
 
 ## Connect Mist Ethereum Wallet to the Private Net:
 Install Mist Ethereum Wallet: [/ethereum/mist/releases](https://github.com/ethereum/mist/releases)
-#### Connect Mist to your private net blockchain and use Mist functionality
+### Connect Mist to your private net blockchain and use Mist functionality
 On macOS start Mist like this from a terminal to connect to the private network, the geth.ipc path end point is the above noted when the local node was started:
 ```
 $ /Applications/Mist.app/Contents/MacOS/Mist --rpc /Users/...../private-blockchain/chain-data/geth.ipc
