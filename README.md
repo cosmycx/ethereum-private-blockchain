@@ -1,37 +1,66 @@
-## Welcome to GitHub Pages
+# How to Start an Ethereum Private Network Blockchain
 
-You can use the [editor on GitHub](https://github.com/cosmycx/ethereum-private-blockchain/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+This page contains description on how to start an own private network blockchain with [Go Ethereum](https://github.com/ethereum/go-ethereum). 
+__One local machine__ running node and __one cloud__ based running node are connected. Similar additional nodes can be added to the private network.
+>An Ethereum network is a private network if the nodes are not connected to the main network nodes.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+More info: (https://github.com/ethereum/go-ethereum/wiki/Private-network)[https://github.com/ethereum/go-ethereum/wiki/Private-network]
+___
+### First Node - Local machine: 
+This is done on macOS Sierra 10.12.6, however it should work in a similar way on other OS or maybe using docker and linux.
 
-### Markdown
+__First thing first:__
+Install Go Ethereum, geth which is the CLI Ethereum client, details are here: (https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum)[https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum]
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+For Mac, you can install using Homebrew, the brew installed version could be behind the actively developed Go Ethereum, but it should work or you can also install from develop branch.
+(https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Mac)[https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Mac]
 ```
+$ brew tap ethereum/ethereum
+$ brew install ethereum
+```
+Check install using the terminal:
+```
+$ geth version
+```
+Create a new directory somewhere on the local machine for all the the private blockchain data:
+```
+$ cd ~/Documents
+$ mkdir private-blockchain
+$ cd private-blockchain
+$ mkdir chain-data
+```
+Next you will need a configuration file called __genesis block__, which is the start of every blockchain. Here is an example of a __genesis.json__ file:
+```
+{
+    "config": {
+        "chainId"         : 555,                                              
+        "homesteadBlock"  : 0,                                                
+        "eip155Block"     : 0,                                            
+        "eip158Block"     : 0
+    },
+    "coinbase"    : "0x0000000000000000000000000000000000000001",                         
+    "nonce"       : "0x0042",                                                             
+    "mixhash"     : "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "parentHash"  : "0x0000000000000000000000000000000000000000000000000000000000000000", 
+    "difficulty"  : "0x2000000",                                                          
+    "gasLimit"    : "0x999000000",                                                        
+    "extraData"   : "",                                                                   
+    "alloc"       : {                                                                     
+    }
+}
+```
+Some basic notes on the above genesis.json:
++ "chainId"           - must be different than 1 which is the main Ethereum net
++ "homesteadBlock"    - using the Ethereum Homestead release
++ "eip155Block"       - epi = Ethereum Improvement Proposal
++ "coinbase"          - collects mining rewards for this block, not required
++ "nonce"             - proof of work nonce
++ "mixhash"           - proof of work hash
++ "parentHash"        - pointer to the parent block, 0 for genesis
++ "difficulty"        - mining dificulty
++ "gasLimit"          - limit of gas cost per block, high for testing
++ "extraData"         - (_to eternity and beyond_ note)[https://en.bitcoin.it/wiki/Genesis_block]
++ "alloc"             - could pre-fund wallet accounts, it does not create the accounts
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/cosmycx/ethereum-private-blockchain/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Use an text editor to make the file then save it in the __private-blockchain__ directory. The directory tree to look something like this:
+![directory tree](/dirtree.png)
