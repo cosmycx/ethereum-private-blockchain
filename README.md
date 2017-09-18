@@ -108,14 +108,14 @@ Log into the new droplet via terminal, or if you do log from the droplet’s pag
 The following is done with a SSH key to easy communicate with the cloud droplet. This is just playing around so __root__ user would be fine for now.
 
 
-Next you need to copy the __genesis.json__ file to the cloud droplet. The easier way to do that is using the __sftp__ net protocol:
+Next you need to copy the __genesis.json__ file to the cloud droplet. The easier way to do that is using the __sftp__ net protocol, run on the local machine terminal in the private-blockchain directory:
 
 ```
 $ sftp root@DROP:IP:ADD:RESS 
 ```
 Then asumming you are in the private-blockchain directory run:
 ```
-$ put ./genesis.json genesis.json
+sftp> put ./genesis.json genesis.json
 ```
 and you should see something like _Uploading ./genesis.json to /root/genesis.json_
 
