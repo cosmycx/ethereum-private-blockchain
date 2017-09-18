@@ -1,7 +1,7 @@
 # How to Start an Ethereum Private Network Blockchain
 
 This page contains description on how to start an own private network blockchain with [Go Ethereum](https://github.com/ethereum/go-ethereum). 
-__One local machine__ running node and __one cloud__ based running node are used to start and connected on the private blockchain network. Similar additional nodes can be added to the network.
+__One local machine__ node and __one cloud__ based node are used to start and are connected on the private blockchain network. Similar additional nodes can be added to join.
 >An Ethereum network is a private network if the nodes are not connected to the main network nodes.
 
 More info: [go-ethereum/wiki/Private-network](https://github.com/ethereum/go-ethereum/wiki/Private-network)
@@ -24,7 +24,7 @@ Check geth is installed and ready to go from the terminal:
 ```
 $ geth version
 ```
-Create a new directory somewhere on the local machine such as in Documents for all the the __private blockchain data__:
+Create a new directory somewhere on the local machine (e.g. Documents) for all the the __private blockchain data__:
 ```
 $ cd ~/Documents
 $ mkdir private-blockchain
@@ -64,7 +64,7 @@ Some basic notes on the above genesis.json:
 + _"extraData"_         - (_to eternity and beyond_ note)[https://en.bitcoin.it/wiki/Genesis_block]
 + _"alloc"_             - could pre-fund wallet accounts, it does not create the accounts
 
-Use an text editor to write the genesis.json file and then save it in the __private-blockchain__ directory. The directory tree would look something like this:
+Use a text editor to write the genesis.json file and then save it in the __private-blockchain__ directory. The directory tree would look something like this:
 
 
 ![directory tree](/images/dirtree.png)
@@ -86,7 +86,7 @@ Things to note from the terminal output, that you will need later on:
 (note at the end your external IP address and port)
 
 
-Local Home Network __Port Forwarding:__ Depending on your local/home network configuration you may have to get into your router box advance settings and forward external IP address port 30303 to the machine your are using local IP address and same port.
+Local Home Network __Port Forwarding:__ Depending on your local/home network configuration you may have to get into your router box advance settings and forward external IP address port 30303 to the machine your are using local IP address and same port. This is done to expose the local machine IP and port to the cloud IP and port for net communication.
 
 
 
@@ -94,9 +94,9 @@ Local Home Network __Port Forwarding:__ Depending on your local/home network con
 
 This is using [DigitalOcean](https://www.digitalocean.com/), however other cloud services such as Amazon, etc.. would work the same.
 
-Create an Ubuntu 16.04.3 x64 Droplet, here is the time to add the SSH key if you previously created one. [DigitalOcean has tutorials](https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-digitalocean-droplets) how to create one. The SSH key is not needed but nice to have. 
+Create an Ubuntu 16.04.3 x64 Droplet, here is the time to add the SSH key if you previously created one. [DigitalOcean has tutorials](https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-digitalocean-droplets) how to create one. The SSH key is not needed but nice to have to easy connect to the cloud terminal. 
 
-Once you have the droplet created, you will need to copy the droplet's IP address.
+Once you have the droplet created, you will need to copy the droplet's IP address. On DigitalOcean it appears as below:
 
 
 ![digicloud](/images/digicloud.png)
@@ -106,10 +106,10 @@ Log into the new droplet via terminal, or if you do log from the droplet’s pag
 The following is done with a SSH key to easy communicate with the cloud droplet. This is just playing around so __root__ user would be fine for now.
 
 
-Next you need the __genesis.json__ file copied on the cloud droplet. The easier way to do that is using the __sftp__ net protocol:
+Next you need to copy the __genesis.json__ file to the cloud droplet. The easier way to do that is using the __sftp__ net protocol:
 
 ```
-$ sftp root@Droplet:IP:ADD:RESS 
+$ sftp root@DROP:IP:ADD:RESS 
 ```
 Then asumming you are in the private-blockchain directory run:
 ```
@@ -120,7 +120,7 @@ and you should see something like _Uploading ./genesis.json to /root/genesis.jso
 Next you need to access the Droplet terminal and install geth:
 
 ```
-ssh root@Droplet:IP:ADD:RESS 
+ssh root@DROP:IP:ADD:RESS 
 ```
 
 Installing Ethereum Go on Linux Ubuntu from terminal:
@@ -136,15 +136,15 @@ You can do the same thing as on the local machine and create a directory chain-d
 ```
 $ mkdir chain-data
 ```
-then run geth to create a database that uses this genesis block:
+then run geth to create a database that uses the genesis block:
 ```
 $ geth --datadir ./chain-data init ./genesis.json
 ```
-Start the node on the blockchain:
+Start the node on the blockchain using the same chain-data directory:
 ```
 $ geth --datadir ./chain-data console
 ```
-console is added to have cloud same console access (to the JS console) after the node is started, otherwise you will have to start another terminal connect to the droplet and then attach to the running geth.
+console is added to have cloud same console access (to the __JS console__) after the node is started, otherwise you will have to start another terminal connect to the droplet and then attach to the running geth.
 
 In the geth JS console run admin.addPeer with the the saved enode info from the local machine:
 ```
@@ -159,7 +159,7 @@ Listing peers should confirm the other peer node:
 
 ## Transfer Ether from local account to cloud account
 
-__Cloud Node__ in the geth JS console:
+__Cloud Node__ in the geth __JS console__:
 ```
 > eth.accounts
 ```
@@ -168,7 +168,7 @@ No accounts are present, to create an account:
 > personal.newAccount("passphrase")
 ```
 
-__Local node__ attach a geth JS console from a terminal:
+__Local node__ attach a geth __JS console__ from a terminal:
 ```
 $ geth attach /Users/..../private-blockchain/chain-data/geth.ipc
 ```
